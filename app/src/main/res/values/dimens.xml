@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="stroke_size">1dp</dimen>
+    <dimen name="margin_my_location_start">1dp</dimen>
+    <dimen name="corner_radius">8dp</dimen>
+    <dimen name="margin_degree_end">9dp</dimen>
+    <dimen name="margin_city_name">19dp</dimen>
+    <dimen name="margin_change_start">21dp</dimen>
+    <dimen name="margin_change_top">18dp</dimen>
+    <dimen name="margin_temperature_group_top">26dp</dimen>
+    <dimen name="margin_location_start">29dp</dimen>
+    <dimen name="switch_button_height">29dp</dimen>
+    <dimen name="toggle_group_height">29dp</dimen>
+    <dimen name="margin_degree_top">30dp</dimen>
+    <dimen name="switch_button_width">38dp</dimen>
+    <dimen name="margin_temperature_group_end">43dp</dimen>
+    <dimen name="toggle_group_width">77dp</dimen>
+
+
+    <dimen name="text_size_city_name">30sp</dimen>
+    <dimen name="text_size_char">18sp</dimen>
+    <dimen name="text_size_small">15sp</dimen>
+
+</resources>

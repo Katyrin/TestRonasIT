@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">TestRonasIT</string>
+    <string name="change_city">Change city</string>
+    <string name="location_image">Location image</string>
+    <string name="my_location">My location</string>
+    <string name="c">C</string>
+    <string name="f">F</string>
+    <string name="degree">º</string>
+    <string name="wind">Wind</string>
+    <string name="pressure">Pressure</string>
+    <string name="humidity">Humidity</string>
+    <string name="chance_of_rain">Chance of rain</string>
 </resources>
