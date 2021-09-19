@@ -8,10 +8,7 @@ interface ApiService {
 
     @GET("weather?exclude=current,minutely,hourly,alerts")
     suspend fun getWeatherByCoordinate(
-        @Query("lat") lat: Float,
-        @Query("lon") lon: Float,
-        @Query("units") unit: String,
-        @Query("lang") lang: String,
-        @Query("appid") key: String
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double
     ): WeatherRequest
 }

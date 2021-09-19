@@ -1,15 +1,18 @@
 package com.katyrin.testronasit.model.repository
 
-import com.katyrin.testronasit.model.data.WeatherRequest
+import com.katyrin.testronasit.model.data.WeatherDTO
 import com.katyrin.testronasit.model.datasource.RemoteDataSource
+import com.katyrin.testronasit.model.storage.Storage
 
-class RepositoryImpl(private val remoteDataSource: RemoteDataSource) : Repository {
+class RepositoryImpl(
+    private val remoteDataSource: RemoteDataSource,
+    private val storage: Storage
+) : Repository {
 
-    override suspend fun getWeatherByCoordinate(
-        lat: Float,
-        lon: Float,
-        unit: String,
-        lang: String,
-        key: String
-    ): WeatherRequest = remoteDataSource.getWeatherByCoordinate(lat, lon, unit, lang, key)
+    override suspend fun getWeatherByCoordinate(lat: Double, lon: Double): WeatherDTO =
+        remoteDataSource.getWeatherByCoordinate(lat, lon)
+
+    override fun getMeasure(): Boolean = storage.isMetric()
+
+    override fun setMeasure(isMetric: Boolean): Unit = storage.setMeasure(isMetric)
 }

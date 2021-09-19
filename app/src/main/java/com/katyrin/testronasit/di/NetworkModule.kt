@@ -13,12 +13,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 private const val BASE_URL = "https://api.openweathermap.org/data/2.5/"
 
 val network = module {
-    single { provideInterceptor() }
+    single<Interceptor> { BaseInterceptor(storage = get()) }
     factory { provideClient(interceptor = get()) }
     factory { provideApi(okHttpClient = get()) }
 }
-
-private fun provideInterceptor(): Interceptor = BaseInterceptor.interceptor
 
 private fun provideClient(interceptor: Interceptor): OkHttpClient =
     OkHttpClient.Builder()

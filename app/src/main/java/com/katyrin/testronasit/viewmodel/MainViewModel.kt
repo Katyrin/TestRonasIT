@@ -22,20 +22,21 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
         _mutableLiveData.postValue(AppState.Error(throwable.message))
     }
 
-    fun getWeatherByCoordinate(
-        lat: Float,
-        lon: Float,
-        unit: String,
-        lang: String,
-        key: String
-    ) {
+    fun getWeatherByCoordinate(lat: Double, lon: Double) {
         _mutableLiveData.value = AppState.Loading
         cancelJob()
         viewModelCoroutineScope.launch {
-            _mutableLiveData.value =
-                AppState.Success(repository.getWeatherByCoordinate(lat, lon, unit, lang, key))
+            _mutableLiveData.value = AppState.Success(repository.getWeatherByCoordinate(lat, lon))
         }
     }
+
+    fun getMeasure() {
+        _mutableLiveData.postValue(
+            if (repository.getMeasure()) AppState.Metric else AppState.Imperial
+        )
+    }
+
+    fun setMeasure(isMetric: Boolean): Unit = repository.setMeasure(isMetric)
 
     private fun cancelJob() {
         viewModelCoroutineScope.coroutineContext.cancelChildren()

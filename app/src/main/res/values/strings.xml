@@ -7,6 +7,9 @@
     <string name="f">F</string>
     <string name="degree">º</string>
     <string name="percent_char">%</string>
+    <string name="meeter_per_second">m/s</string>
+    <string name="miles_per_hour">mph</string>
+    <string name="mm_hg_art">mmHg Art.</string>
     <string name="wind">Wind</string>
     <string name="pressure">Pressure</string>
     <string name="humidity">Humidity</string>
@@ -15,4 +18,13 @@
     <string name="explanation_get_location">Access is required otherwise you will not be able to use the application</string>
     <string name="grant_access">Grant access</string>
     <string name="do_not">Do not</string>
+    <string name="north">North</string>
+    <string name="north_east">North-East</string>
+    <string name="east">East</string>
+    <string name="south_east">South-East</string>
+    <string name="south">South</string>
+    <string name="south_west">South-West</string>
+    <string name="west">West</string>
+    <string name="north_west">North-West</string>
+    <string name="language">en</string>
 </resources>

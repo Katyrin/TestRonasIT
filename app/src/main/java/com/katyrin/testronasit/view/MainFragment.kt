@@ -1,17 +1,14 @@
 package com.katyrin.testronasit.view
 
 import android.content.Context
-import android.location.Location
-import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.katyrin.testronasit.BuildConfig
 import com.katyrin.testronasit.databinding.FragmentMainBinding
-import com.katyrin.testronasit.model.data.WeatherRequest
+import com.katyrin.testronasit.model.data.WeatherDTO
 import com.katyrin.testronasit.utils.checkLocationPermission
 import com.katyrin.testronasit.utils.toast
 import com.katyrin.testronasit.viewmodel.AppState
@@ -33,42 +30,51 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.liveData.observe(viewLifecycleOwner) { renderData(it) }
-        subscribeUpdateLocation()
+        viewModel.getMeasure()
+        getWeatherByCoordinate()
+        initViews()
     }
 
-    private fun subscribeUpdateLocation() {
+    private fun initViews() {
+        binding?.apply {
+            metricButton.setOnClickListener {
+                viewModel.setMeasure(true)
+                getWeatherByCoordinate()
+            }
+            imperialButton.setOnClickListener {
+                viewModel.setMeasure(false)
+                getWeatherByCoordinate()
+            }
+        }
+    }
+
+    private fun getWeatherByCoordinate() {
         checkLocationPermission {
             (context?.getSystemService(Context.LOCATION_SERVICE) as LocationManager)
                 .getLastKnownLocation(LocationManager.GPS_PROVIDER)
-                ?.apply {
-                    viewModel.getWeatherByCoordinate(
-                        latitude.toFloat(),
-                        longitude.toFloat(),
-                        "metric",
-                        "ru",
-                        BuildConfig.WEATHER_API_KEY
-                    )
-                }
+                ?.apply { viewModel.getWeatherByCoordinate(latitude, longitude) }
         }
     }
 
     private fun renderData(appState: AppState) {
         when (appState) {
-            is AppState.Success -> setSuccessState(appState.weatherRequest)
+            is AppState.Success -> setSuccessState(appState.weather)
             is AppState.Loading -> setLoadingState()
             is AppState.Error -> setErrorState(appState.message)
+            is AppState.Metric -> binding?.apply { temperatureGroup.check(metricButton.id) }
+            is AppState.Imperial -> binding?.apply { temperatureGroup.check(imperialButton.id) }
         }
     }
 
-    private fun setSuccessState(weatherRequest: WeatherRequest) {
+    private fun setSuccessState(weather: WeatherDTO) {
         binding?.apply {
-            cityName.text = weatherRequest.name
-            countDegree.text = weatherRequest.main.temp.toString()
-            description.text = weatherRequest.weather[0].description
-            windDescription.text = weatherRequest.wind.speed.toString()
-            pressureDescription.text = weatherRequest.main.pressure.toString()
-            humidityDescription.text = weatherRequest.main.humidity.toString()
-            chanceOfRainDescription.text = weatherRequest.clouds.all.toString()
+            cityName.text = weather.city
+            countDegree.text = weather.temperature
+            description.text = weather.description
+            windDescription.text = weather.wind
+            pressureDescription.text = weather.pressure
+            humidityDescription.text = weather.humidity
+            chanceOfRainDescription.text = weather.rain
         }
     }
 

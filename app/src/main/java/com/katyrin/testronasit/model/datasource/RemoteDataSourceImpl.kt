@@ -1,15 +1,14 @@
 package com.katyrin.testronasit.model.datasource
 
-import com.katyrin.testronasit.model.data.WeatherRequest
+import com.katyrin.testronasit.model.data.WeatherDTO
+import com.katyrin.testronasit.model.mapping.WeatherMapping
 import com.katyrin.testronasit.model.network.ApiService
 
-class RemoteDataSourceImpl(private val apiService: ApiService) : RemoteDataSource {
+class RemoteDataSourceImpl(
+    private val apiService: ApiService,
+    private val weatherMapping: WeatherMapping
+) : RemoteDataSource {
 
-    override suspend fun getWeatherByCoordinate(
-        lat: Float,
-        lon: Float,
-        unit: String,
-        lang: String,
-        key: String
-    ): WeatherRequest = apiService.getWeatherByCoordinate(lat, lon, unit, lang, key)
+    override suspend fun getWeatherByCoordinate(lat: Double, lon: Double): WeatherDTO =
+        weatherMapping.mapWeatherRequestToWeatherDTO(apiService.getWeatherByCoordinate(lat, lon))
 }

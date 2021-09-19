@@ -1,14 +1,7 @@
 package com.katyrin.testronasit.model.datasource
 
-import com.katyrin.testronasit.model.data.WeatherRequest
+import com.katyrin.testronasit.model.data.WeatherDTO
 
 interface RemoteDataSource {
-
-    suspend fun getWeatherByCoordinate(
-        lat: Float,
-        lon: Float,
-        unit: String,
-        lang: String,
-        key: String
-    ): WeatherRequest
+    suspend fun getWeatherByCoordinate(lat: Double, lon: Double): WeatherDTO
 }

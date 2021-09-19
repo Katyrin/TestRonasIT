@@ -63,7 +63,7 @@
         app:singleSelection="true">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/cancel_button"
+            android:id="@+id/metric_button"
             style="@style/SwitchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
             android:text="@string/c" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/repeat_button"
+            android:id="@+id/imperial_button"
             style="@style/SwitchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
