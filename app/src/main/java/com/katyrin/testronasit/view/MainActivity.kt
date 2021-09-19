@@ -1,7 +1,8 @@
-package com.katyrin.testronasit
+package com.katyrin.testronasit.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.katyrin.testronasit.R
 
 class MainActivity : AppCompatActivity() {
 

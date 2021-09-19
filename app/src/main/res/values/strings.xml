@@ -6,8 +6,13 @@
     <string name="c">C</string>
     <string name="f">F</string>
     <string name="degree">º</string>
+    <string name="percent_char">%</string>
     <string name="wind">Wind</string>
     <string name="pressure">Pressure</string>
     <string name="humidity">Humidity</string>
     <string name="chance_of_rain">Chance of rain</string>
+    <string name="access_to_location">Access to get location</string>
+    <string name="explanation_get_location">Access is required otherwise you will not be able to use the application</string>
+    <string name="grant_access">Grant access</string>
+    <string name="do_not">Do not</string>
 </resources>

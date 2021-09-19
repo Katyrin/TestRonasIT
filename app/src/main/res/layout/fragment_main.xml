@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_main"
     android:forceDarkAllowed="false"
-    tools:context=".MainFragment">
+    tools:context=".view.MainFragment">
 
     <TextView
         android:id="@+id/city_name"
@@ -145,14 +145,14 @@
         android:id="@+id/wind_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/lato"
-        android:textSize="18sp"
-        android:textColor="@color/white"
         android:layout_marginStart="22dp"
         android:layout_marginTop="2dp"
+        android:fontFamily="@font/lato"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/wind_text"
-        tools:text="5 м/c, западный"/>
+        tools:text="5 м/c, западный" />
 
     <TextView
         android:id="@+id/pressure_text"
@@ -169,14 +169,14 @@
         android:id="@+id/pressure_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/lato"
-        android:textSize="18sp"
-        android:textColor="@color/white"
         android:layout_marginStart="38dp"
         android:layout_marginTop="2dp"
+        android:fontFamily="@font/lato"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@id/wind_description"
         app:layout_constraintTop_toBottomOf="@id/pressure_text"
-        tools:text="752 мм рт. ст."/>
+        tools:text="752 мм рт. ст." />
 
     <TextView
         android:id="@+id/humidity_text"
@@ -193,15 +193,15 @@
         android:id="@+id/humidity_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/lato"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
         android:layout_marginStart="22dp"
         android:layout_marginTop="2dp"
+        android:fontFamily="@font/lato"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/humidity_text"
-        tools:text="60%"/>
+        tools:text="60%" />
 
     <TextView
         android:id="@+id/chance_of_rain_text"
@@ -218,14 +218,14 @@
         android:id="@+id/chance_of_rain_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/lato"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
         android:layout_marginStart="38dp"
         android:layout_marginTop="2dp"
+        android:fontFamily="@font/lato"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/wind_description"
         app:layout_constraintTop_toBottomOf="@id/chance_of_rain_text"
-        tools:text="10%"/>
+        tools:text="10%" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
