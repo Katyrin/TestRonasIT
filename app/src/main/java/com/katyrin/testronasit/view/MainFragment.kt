@@ -7,11 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.katyrin.testronasit.R
 import com.katyrin.testronasit.databinding.FragmentMainBinding
 import com.katyrin.testronasit.model.data.WeatherDTO
 import com.katyrin.testronasit.utils.checkLocationPermission
 import com.katyrin.testronasit.utils.toast
 import com.katyrin.testronasit.viewmodel.AppState
+import com.katyrin.testronasit.viewmodel.ErrorState
 import com.katyrin.testronasit.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -60,9 +62,19 @@ class MainFragment : Fragment() {
         when (appState) {
             is AppState.Success -> setSuccessState(appState.weather)
             is AppState.Loading -> setLoadingState()
-            is AppState.Error -> setErrorState(appState.message)
+            is AppState.Error -> setErrorState(appState.errorState)
             is AppState.Metric -> binding?.apply { temperatureGroup.check(metricButton.id) }
             is AppState.Imperial -> binding?.apply { temperatureGroup.check(imperialButton.id) }
+        }
+    }
+
+    private fun setErrorState(errorState: ErrorState) {
+        when(errorState) {
+            is ErrorState.TimOut -> toast(R.string.timeout_error_message)
+            is ErrorState.UnknownHost -> toast(R.string.unknown_host_error_message)
+            is ErrorState.Connection -> toast(R.string.connection_error_message)
+            is ErrorState.Server -> toast(R.string.server_error_message)
+            is ErrorState.Unknown -> toast(errorState.message)
         }
     }
 
@@ -80,10 +92,6 @@ class MainFragment : Fragment() {
 
     private fun setLoadingState() {
         toast("Loading")
-    }
-
-    private fun setErrorState(message: String?) {
-        toast(message)
     }
 
     override fun onDestroyView() {

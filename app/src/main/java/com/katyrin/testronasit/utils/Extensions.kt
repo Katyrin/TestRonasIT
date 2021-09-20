@@ -39,3 +39,6 @@ private fun Fragment.requestLocationPermission(): Unit =
 
 fun Fragment.toast(message: String?): Unit =
     Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+
+fun Fragment.toast(resource: Int): Unit =
+    Toast.makeText(requireContext(), resource, Toast.LENGTH_SHORT).show()
