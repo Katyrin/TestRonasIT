@@ -160,6 +160,7 @@
                     style="@style/LatoFont.White.Big"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:textFontWeight="300"
                     app:layout_constraintWidth_percent="0.5"
                     app:layout_constraintBottom_toBottomOf="@id/weather_frame"
                     app:layout_constraintEnd_toEndOf="@id/weather_frame"

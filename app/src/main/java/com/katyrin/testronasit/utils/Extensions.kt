@@ -4,18 +4,18 @@ import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.view.inputmethod.InputMethodManager
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.model.GlideUrl
 import com.katyrin.testronasit.R
+import com.squareup.picasso.Picasso
 
 private const val REQUEST_LOCATION_CODE = 332
-private const val ICON_ULR_START = "http://openweathermap.org/img/wn/"
+private const val SQUARE_IMAGE_SIZE = 100
+private const val ICON_ULR_START = "https://openweathermap.org/img/wn/"
 private const val ICON_ULR_END = "@2x.png"
 
 fun Fragment.checkLocationPermission(onPermissionGranted: () -> Unit): Unit =
@@ -58,8 +58,10 @@ fun Fragment.hideKeyboard() {
     }
 }
 
-fun ImageView.setImageGlide(iconName: String) {
+fun AppCompatImageView.setImagePicasso(iconName: String) {
     val uri = ICON_ULR_START + iconName + ICON_ULR_END
-    val glideUrl = GlideUrl(uri)
-    Glide.with(context).load(glideUrl).into(this)
+    Picasso.get()
+        .load(uri)
+        .resize(SQUARE_IMAGE_SIZE, SQUARE_IMAGE_SIZE)
+        .into(this)
 }

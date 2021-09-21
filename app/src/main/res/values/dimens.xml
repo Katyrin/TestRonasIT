@@ -3,21 +3,37 @@
 
     <dimen name="stroke_size">1dp</dimen>
     <dimen name="margin_my_location_start">1dp</dimen>
+    <dimen name="margin_top_min">2dp</dimen>
     <dimen name="corner_radius">8dp</dimen>
+    <dimen name="elevation">8dp</dimen>
     <dimen name="margin_degree_end">9dp</dimen>
+    <dimen name="margin_end_ok">16dp</dimen>
+    <dimen name="margin_bottom_ok">17dp</dimen>
+    <dimen name="margin_input_text">18dp</dimen>
     <dimen name="margin_city_name">19dp</dimen>
     <dimen name="margin_change_start">21dp</dimen>
+    <dimen name="margin_edge">22dp</dimen>
     <dimen name="margin_change_top">18dp</dimen>
     <dimen name="margin_temperature_group_top">26dp</dimen>
+    <dimen name="margin_top_input_frame">27dp</dimen>
     <dimen name="margin_location_start">29dp</dimen>
     <dimen name="switch_button_height">29dp</dimen>
     <dimen name="toggle_group_height">29dp</dimen>
     <dimen name="margin_degree_top">30dp</dimen>
+    <dimen name="margin_top_max">35dp</dimen>
     <dimen name="switch_button_width">38dp</dimen>
     <dimen name="margin_temperature_group_end">43dp</dimen>
+    <dimen name="margin_bottom_image">52dp</dimen>
+    <dimen name="margin_end_frame">60dp</dimen>
+    <dimen name="margin_start_frame">64dp</dimen>
+    <dimen name="margin_top_image">68dp</dimen>
     <dimen name="toggle_group_width">77dp</dimen>
+    <dimen name="height_image">100dp</dimen>
+    <dimen name="margin_top_120">120dp</dimen>
+    <dimen name="margin_top_frame">167dp</dimen>
 
 
+    <dimen name="text_size_big">90sp</dimen>
     <dimen name="text_size_city_name">30sp</dimen>
     <dimen name="text_size_char">18sp</dimen>
     <dimen name="text_size_small">15sp</dimen>

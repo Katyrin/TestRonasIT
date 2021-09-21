@@ -8,10 +8,10 @@
             android:id="@+id/input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="21dp"
-            android:layout_marginTop="27dp"
-            android:layout_marginEnd="22dp"
-            android:elevation="8dp"
+            android:layout_marginStart="@dimen/margin_change_start"
+            android:layout_marginTop="@dimen/margin_top_input_frame"
+            android:layout_marginEnd="@dimen/margin_edge"
+            android:elevation="@dimen/elevation"
             app:layout_constraintBottom_toTopOf="parent" />
 
         <Constraint
@@ -72,10 +72,10 @@
             android:id="@+id/input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="21dp"
-            android:layout_marginTop="27dp"
-            android:layout_marginEnd="22dp"
-            android:elevation="8dp"
+            android:layout_marginStart="@dimen/margin_change_start"
+            android:layout_marginTop="@dimen/margin_top_input_frame"
+            android:layout_marginEnd="@dimen/margin_edge"
+            android:elevation="@dimen/elevation"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Constraint

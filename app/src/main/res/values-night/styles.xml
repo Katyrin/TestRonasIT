@@ -77,7 +77,7 @@
         <item name="android:imeOptions">actionDone</item>
         <item name="android:inputType">textCapWords|textNoSuggestions</item>
         <item name="android:maxLines">1</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/OK_blue</item>
         <item name="android:textColorHint">@color/OK_blue</item>
         <item name="android:textCursorDrawable">@null</item>
         <item name="android:textSize">@dimen/text_size_small</item>

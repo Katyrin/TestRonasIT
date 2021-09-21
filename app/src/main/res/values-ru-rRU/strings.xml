@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TestRonasIT</string>
+    <string name="change_city">"Сменить город "</string>
+    <string name="location_image">Изображение локации</string>
+    <string name="my_location">"Мое местоположение "</string>
+    <string name="meeter_per_second">м/с</string>
+    <string name="miles_per_hour">миль/ч</string>
+    <string name="mm_hg_art">мм рт. ст.</string>
+    <string name="wind">Ветер</string>
+    <string name="pressure">Давление</string>
+    <string name="humidity">Влажность</string>
+    <string name="chance_of_rain">"Вероятность дождя "</string>
+    <string name="access_to_location">Доступ для определения местоположения</string>
+    <string name="explanation_get_location">"Требуется доступ, иначе вы не сможете использовать приложение "</string>
+    <string name="grant_access">"Предоставление доступа "</string>
+    <string name="do_not">"Не надо "</string>
+    <string name="north">Северный</string>
+    <string name="north_east">Северо-Восточный</string>
+    <string name="east">Восточный</string>
+    <string name="south_east">Юго-Восточный</string>
+    <string name="south">Южный</string>
+    <string name="south_west">Юго-Западный</string>
+    <string name="west">Западный</string>
+    <string name="north_west">Северо-Западный</string>
+    <string name="language">ru</string>
+    <string name="timeout_error_message">"Тайм-аут - проверьте подключение к Интернету "</string>
+    <string name="unknown_host_error_message">" Не удалось установить соединение, проверьте свой Интернет"</string>
+    <string name="connection_error_message">"Отключение соединения. Пожалуйста, проверьте свой интернет "</string>
+    <string name="server_error_message">Сервер недоступен. Повторите попытку позже</string>
+    <string name="not_found_message">"Город не найден "</string>
+    <string name="current_weather_image">"Текущее изображение погоды "</string>
+    <string name="enter_city">Введите город</string>
+</resources>

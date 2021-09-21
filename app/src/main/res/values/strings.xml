@@ -3,10 +3,10 @@
     <string name="change_city">Change city</string>
     <string name="location_image">Location image</string>
     <string name="my_location">My location</string>
-    <string name="c">C</string>
-    <string name="f">F</string>
-    <string name="degree">º</string>
-    <string name="percent_char">%</string>
+    <string name="c" translatable="false">C</string>
+    <string name="f" translatable="false">F</string>
+    <string name="degree" translatable="false">º</string>
+    <string name="percent_char" translatable="false">%</string>
     <string name="meeter_per_second">m/s</string>
     <string name="miles_per_hour">mph</string>
     <string name="mm_hg_art">mmHg Art.</string>
@@ -33,6 +33,6 @@
     <string name="server_error_message">Server is unreachable, please try again later</string>
     <string name="not_found_message">City not found</string>
     <string name="current_weather_image">Current weather image</string>
-    <string name="ok">OK</string>
+    <string name="ok" translatable="false">OK</string>
     <string name="enter_city">Enter city</string>
 </resources>

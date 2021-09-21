@@ -13,7 +13,7 @@ import com.katyrin.testronasit.databinding.FragmentMainBinding
 import com.katyrin.testronasit.model.data.WeatherDTO
 import com.katyrin.testronasit.utils.checkLocationPermission
 import com.katyrin.testronasit.utils.hideKeyboard
-import com.katyrin.testronasit.utils.setImageGlide
+import com.katyrin.testronasit.utils.setImagePicasso
 import com.katyrin.testronasit.utils.toast
 import com.katyrin.testronasit.viewmodel.AppState
 import com.katyrin.testronasit.viewmodel.ErrorState
@@ -125,7 +125,7 @@ class MainFragment : Fragment() {
                 SHOWER_RAIN -> weatherImage.setImageResource(R.drawable.ic_rain)
                 RAIN -> weatherImage.setImageResource(R.drawable.ic_rain)
                 THUNDERSTORM -> weatherImage.setImageResource(R.drawable.ic_strom)
-                else -> weatherImage.setImageGlide(icon)
+                else -> weatherImage.setImagePicasso(icon)
             }
         }
     }
