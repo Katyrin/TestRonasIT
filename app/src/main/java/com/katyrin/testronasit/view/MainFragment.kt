@@ -13,6 +13,7 @@ import com.katyrin.testronasit.databinding.FragmentMainBinding
 import com.katyrin.testronasit.model.data.WeatherDTO
 import com.katyrin.testronasit.utils.checkLocationPermission
 import com.katyrin.testronasit.utils.hideKeyboard
+import com.katyrin.testronasit.utils.setImageGlide
 import com.katyrin.testronasit.utils.toast
 import com.katyrin.testronasit.viewmodel.AppState
 import com.katyrin.testronasit.viewmodel.ErrorState
@@ -99,6 +100,7 @@ class MainFragment : Fragment() {
     }
 
     private fun setSuccessState(weather: WeatherDTO) {
+        setIcon(weather.icon)
         binding?.apply {
             swipeRefreshLayout.isRefreshing = false
             cityName.text = weather.city
@@ -108,6 +110,21 @@ class MainFragment : Fragment() {
             pressureDescription.text = weather.pressure
             humidityDescription.text = weather.humidity
             chanceOfRainDescription.text = weather.rain
+        }
+    }
+
+    private fun setIcon(icon: String) {
+        binding?.apply {
+            when (icon) {
+                CLEAR_SKY -> weatherImage.setImageResource(R.drawable.ic_sun)
+                FEW_CLOUDS -> weatherImage.setImageResource(R.drawable.ic_partly_cloudy)
+                CLOUDS -> weatherImage.setImageResource(R.drawable.ic_cloud)
+                BROKEN_CLOUDS -> weatherImage.setImageResource(R.drawable.ic_cloud)
+                SHOWER_RAIN -> weatherImage.setImageResource(R.drawable.ic_rain)
+                RAIN -> weatherImage.setImageResource(R.drawable.ic_rain)
+                THUNDERSTORM -> weatherImage.setImageResource(R.drawable.ic_strom)
+                else -> weatherImage.setImageGlide(icon)
+            }
         }
     }
 
@@ -121,6 +138,13 @@ class MainFragment : Fragment() {
     }
 
     companion object {
+        private const val CLEAR_SKY = "01d"
+        private const val FEW_CLOUDS = "02d"
+        private const val CLOUDS = "03d"
+        private const val BROKEN_CLOUDS = "04d"
+        private const val SHOWER_RAIN = "09d"
+        private const val RAIN = "10d"
+        private const val THUNDERSTORM = "11d"
         fun newInstance() = MainFragment()
     }
 }

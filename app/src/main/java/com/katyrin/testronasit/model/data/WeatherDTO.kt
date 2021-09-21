@@ -7,5 +7,6 @@ data class WeatherDTO(
     val wind: String,
     val pressure: String,
     val humidity: String,
-    val rain: String
+    val rain: String,
+    val icon: String
 )

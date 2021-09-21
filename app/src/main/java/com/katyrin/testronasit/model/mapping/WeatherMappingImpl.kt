@@ -5,6 +5,7 @@ import com.katyrin.testronasit.R
 import com.katyrin.testronasit.model.data.WeatherDTO
 import com.katyrin.testronasit.model.data.WeatherRequest
 import com.katyrin.testronasit.model.storage.Storage
+import kotlin.math.roundToInt
 
 class WeatherMappingImpl(
     private val context: Context,
@@ -19,11 +20,12 @@ class WeatherMappingImpl(
             getWindString(weatherRequest),
             getPressureString(weatherRequest.main.pressure),
             getStringWithPercent(weatherRequest.main.humidity),
-            getStringWithPercent(weatherRequest.clouds.all)
+            getStringWithPercent(weatherRequest.clouds.all),
+            weatherRequest.weather[0].icon
         )
 
     private fun getTemperatureString(temperature: Float): String =
-        "$temperature${context.getString(R.string.degree)}"
+        temperature.roundToInt().toString() + context.getString(R.string.degree)
 
     private fun getWindString(weatherRequest: WeatherRequest): String =
         "${weatherRequest.wind.speed} ${context.getString(getMeasureInt())}, " +
