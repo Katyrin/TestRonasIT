@@ -1,10 +1,7 @@
 package com.katyrin.testronasit
 
 import android.app.Application
-import com.katyrin.testronasit.di.application
-import com.katyrin.testronasit.di.mainModule
-import com.katyrin.testronasit.di.network
-import com.katyrin.testronasit.di.storage
+import com.katyrin.testronasit.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -14,7 +11,7 @@ class App : Application() {
         super.onCreate()
         startKoin {
             androidContext(applicationContext)
-            modules(listOf(application, mainModule, network, storage))
+            modules(listOf(application, mainModule, network, storage, database))
         }
     }
 }

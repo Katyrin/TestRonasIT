@@ -13,6 +13,7 @@ import java.net.UnknownHostException
 
 class MainViewModel(private val repository: Repository) : ViewModel() {
 
+    private var requestCity: String? = null
     private val _mutableLiveData: MutableLiveData<AppState> = MutableLiveData()
     val liveData: LiveData<AppState>
         get() = _mutableLiveData
@@ -26,10 +27,20 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
     private fun handlerError(throwable: Throwable) {
         _mutableLiveData.value = when (throwable) {
             is HttpException -> AppState.Error(ErrorState.NotFound)
-            is SocketTimeoutException -> AppState.Error(ErrorState.TimOut)
-            is UnknownHostException -> AppState.Error(ErrorState.UnknownHost)
-            is ConnectionShutdownException -> AppState.Error(ErrorState.Connection)
+            is SocketTimeoutException -> {
+                getWeatherByCity()
+                AppState.Error(ErrorState.TimOut)
+            }
+            is UnknownHostException -> {
+                getWeatherByCity()
+                AppState.Error(ErrorState.UnknownHost)
+            }
+            is ConnectionShutdownException -> {
+                getWeatherByCity()
+                AppState.Error(ErrorState.Connection)
+            }
             is IOException -> AppState.Error(ErrorState.Server)
+            is NullPointerException -> AppState.EmptyWeatherData
             else -> AppState.Error(ErrorState.Unknown(throwable.message))
         }
     }
@@ -43,10 +54,32 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
     }
 
     fun getWeatherByCity(city: String) {
+        requestCity = city
         _mutableLiveData.value = AppState.Loading
         cancelJob()
         viewModelCoroutineScope.launch {
             _mutableLiveData.value = AppState.Success(repository.getWeatherByCity(city))
+        }
+    }
+
+    fun getWeather() {
+        _mutableLiveData.value = AppState.Loading
+        cancelJob()
+        viewModelCoroutineScope.launch {
+            val weatherDTO = repository.getWeather()
+            _mutableLiveData.value =
+                if (weatherDTO == null) AppState.EmptyWeatherData else AppState.Success(weatherDTO)
+        }
+    }
+
+    private fun getWeatherByCity() {
+        cancelJob()
+        viewModelCoroutineScope.launch {
+            requestCity?.let { city ->
+                repository.getWeatherByCityLocal(city)?.let { weatherDTO ->
+                    _mutableLiveData.value = AppState.Success(weatherDTO)
+                }
+            }
         }
     }
 

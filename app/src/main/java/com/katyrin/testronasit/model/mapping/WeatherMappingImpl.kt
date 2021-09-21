@@ -3,6 +3,7 @@ package com.katyrin.testronasit.model.mapping
 import android.content.Context
 import com.katyrin.testronasit.R
 import com.katyrin.testronasit.model.data.WeatherDTO
+import com.katyrin.testronasit.model.data.WeatherEntity
 import com.katyrin.testronasit.model.data.WeatherRequest
 import com.katyrin.testronasit.model.storage.Storage
 import kotlin.math.roundToInt
@@ -23,6 +24,14 @@ class WeatherMappingImpl(
             getStringWithPercent(weatherRequest.clouds.all),
             weatherRequest.weather[0].icon
         )
+
+    override fun mapEntityToDTO(weatherEntity: WeatherEntity): WeatherDTO = with(weatherEntity) {
+        WeatherDTO(city, temperature, description, wind, pressure, humidity, rain, icon)
+    }
+
+    override fun mapDTOToEntity(weatherDTO: WeatherDTO): WeatherEntity = with(weatherDTO) {
+        WeatherEntity(city, temperature, description, wind, pressure, humidity, rain, icon)
+    }
 
     private fun getTemperatureString(temperature: Float): String =
         temperature.roundToInt().toString() + context.getString(R.string.degree)

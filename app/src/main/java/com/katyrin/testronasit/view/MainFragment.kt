@@ -36,7 +36,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.liveData.observe(viewLifecycleOwner) { renderData(it) }
         viewModel.getMeasure()
-        getWeatherByCoordinate()
+        viewModel.getWeather()
         initViews()
     }
 
@@ -48,14 +48,14 @@ class MainFragment : Fragment() {
                 false
             }
             myLocation.setOnClickListener { getWeatherByCoordinate() }
-            swipeRefreshLayout.setOnRefreshListener { getWeatherByCoordinate() }
+            swipeRefreshLayout.setOnRefreshListener { viewModel.getWeather() }
             metricButton.setOnClickListener {
                 viewModel.setMeasure(true)
-                getWeatherByCoordinate()
+                viewModel.getWeather()
             }
             imperialButton.setOnClickListener {
                 viewModel.setMeasure(false)
-                getWeatherByCoordinate()
+                viewModel.getWeather()
             }
         }
     }
@@ -70,6 +70,7 @@ class MainFragment : Fragment() {
     }
 
     private fun getWeatherByCoordinate() {
+        binding?.swipeRefreshLayout?.isRefreshing = false
         checkLocationPermission {
             (context?.getSystemService(Context.LOCATION_SERVICE) as LocationManager)
                 .getLastKnownLocation(LocationManager.GPS_PROVIDER)
@@ -79,6 +80,7 @@ class MainFragment : Fragment() {
 
     private fun renderData(appState: AppState) {
         when (appState) {
+            is AppState.EmptyWeatherData -> getWeatherByCoordinate()
             is AppState.Success -> setSuccessState(appState.weather)
             is AppState.Loading -> setLoadingState()
             is AppState.Error -> setErrorState(appState.errorState)
