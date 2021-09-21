@@ -12,6 +12,9 @@ class RepositoryImpl(
     override suspend fun getWeatherByCoordinate(lat: Double, lon: Double): WeatherDTO =
         remoteDataSource.getWeatherByCoordinate(lat, lon)
 
+    override suspend fun getWeatherByCity(city: String): WeatherDTO =
+        remoteDataSource.getWeatherByCity(city)
+
     override fun getMeasure(): Boolean = storage.isMetric()
 
     override fun setMeasure(isMetric: Boolean): Unit = storage.setMeasure(isMetric)

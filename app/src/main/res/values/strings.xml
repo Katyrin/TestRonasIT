@@ -31,4 +31,8 @@
     <string name="unknown_host_error_message">Unable to make a connection, please check your internet</string>
     <string name="connection_error_message">Connection shutdown. Please check your internet</string>
     <string name="server_error_message">Server is unreachable, please try again later</string>
+    <string name="not_found_message">City not found</string>
+    <string name="current_weather_image">Current weather image</string>
+    <string name="ok">OK</string>
+    <string name="enter_city">Enter city</string>
 </resources>

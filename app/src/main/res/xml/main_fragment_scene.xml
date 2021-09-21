@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="27dp"
+            android:layout_marginEnd="22dp"
+            android:elevation="8dp"
+            app:layout_constraintBottom_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/city_name"
+            style="@style/LatoFont.White.CityName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/change_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_change_start"
+            android:layout_marginTop="@dimen/margin_change_top"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/city_name" />
+
+        <Constraint
+            android:id="@+id/location_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_location_start"
+            app:layout_constraintBottom_toBottomOf="@id/change_city"
+            app:layout_constraintStart_toEndOf="@id/change_city"
+            app:layout_constraintTop_toTopOf="@id/change_city" />
+
+        <Constraint
+            android:id="@+id/my_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_my_location_start"
+            app:layout_constraintBottom_toBottomOf="@id/location_image"
+            app:layout_constraintStart_toEndOf="@id/location_image"
+            app:layout_constraintTop_toTopOf="@id/location_image" />
+
+        <Constraint
+            android:id="@+id/temperature_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_temperature_group_top"
+            android:layout_marginEnd="@dimen/margin_temperature_group_end"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/degree"
+            style="@style/LatoFont.White.DegreeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/temperature_group"
+            app:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="27dp"
+            android:layout_marginEnd="22dp"
+            android:elevation="8dp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/city_name"
+            style="@style/LatoFont.White.CityName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/change_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_change_start"
+            android:layout_marginTop="@dimen/margin_change_top"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/city_name" />
+
+        <Constraint
+            android:id="@+id/location_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_location_start"
+            app:layout_constraintBottom_toBottomOf="@id/change_city"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/change_city" />
+
+        <Constraint
+            android:id="@+id/my_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_my_location_start"
+            app:layout_constraintBottom_toBottomOf="@id/location_image"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/location_image" />
+
+        <Constraint
+            android:id="@+id/temperature_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_temperature_group_top"
+            android:layout_marginEnd="@dimen/margin_temperature_group_end"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/degree"
+            style="@style/LatoFont.White.DegreeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+
+    <Transition
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@+id/start"
+        motion:duration="300">
+
+        <OnClick app:targetId="@+id/change_city" />
+    </Transition>
+
+    <Transition
+        app:constraintSetEnd="@id/start"
+        app:constraintSetStart="@+id/end"
+        motion:duration="300">
+    </Transition>
+
+</MotionScene>

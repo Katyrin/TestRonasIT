@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import com.katyrin.testronasit.R
 import com.katyrin.testronasit.databinding.FragmentMainBinding
 import com.katyrin.testronasit.model.data.WeatherDTO
 import com.katyrin.testronasit.utils.checkLocationPermission
+import com.katyrin.testronasit.utils.hideKeyboard
 import com.katyrin.testronasit.utils.toast
 import com.katyrin.testronasit.viewmodel.AppState
 import com.katyrin.testronasit.viewmodel.ErrorState
@@ -39,6 +41,13 @@ class MainFragment : Fragment() {
 
     private fun initViews() {
         binding?.apply {
+            okTextButton.setOnClickListener { getWeatherByCity() }
+            cityEditText.setOnEditorActionListener { _, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) getWeatherByCity()
+                false
+            }
+            myLocation.setOnClickListener { getWeatherByCoordinate() }
+            swipeRefreshLayout.setOnRefreshListener { getWeatherByCoordinate() }
             metricButton.setOnClickListener {
                 viewModel.setMeasure(true)
                 getWeatherByCoordinate()
@@ -47,6 +56,15 @@ class MainFragment : Fragment() {
                 viewModel.setMeasure(false)
                 getWeatherByCoordinate()
             }
+        }
+    }
+
+    private fun getWeatherByCity() {
+        binding?.apply {
+            viewModel.getWeatherByCity(cityEditText.text.toString())
+            cityEditText.text?.clear()
+            hideKeyboard()
+            motionLayout.transitionToStart()
         }
     }
 
@@ -69,7 +87,9 @@ class MainFragment : Fragment() {
     }
 
     private fun setErrorState(errorState: ErrorState) {
-        when(errorState) {
+        binding?.swipeRefreshLayout?.isRefreshing = false
+        when (errorState) {
+            is ErrorState.NotFound -> toast(R.string.not_found_message)
             is ErrorState.TimOut -> toast(R.string.timeout_error_message)
             is ErrorState.UnknownHost -> toast(R.string.unknown_host_error_message)
             is ErrorState.Connection -> toast(R.string.connection_error_message)
@@ -80,6 +100,7 @@ class MainFragment : Fragment() {
 
     private fun setSuccessState(weather: WeatherDTO) {
         binding?.apply {
+            swipeRefreshLayout.isRefreshing = false
             cityName.text = weather.city
             countDegree.text = weather.temperature
             description.text = weather.description
@@ -91,7 +112,7 @@ class MainFragment : Fragment() {
     }
 
     private fun setLoadingState() {
-        toast("Loading")
+        binding?.swipeRefreshLayout?.isRefreshing = true
     }
 
     override fun onDestroyView() {

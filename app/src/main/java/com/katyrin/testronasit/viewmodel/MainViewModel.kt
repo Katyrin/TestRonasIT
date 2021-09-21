@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.katyrin.testronasit.model.repository.Repository
 import kotlinx.coroutines.*
 import okhttp3.internal.http2.ConnectionShutdownException
+import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -24,6 +25,7 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
 
     private fun handlerError(throwable: Throwable) {
         _mutableLiveData.value = when (throwable) {
+            is HttpException -> AppState.Error(ErrorState.NotFound)
             is SocketTimeoutException -> AppState.Error(ErrorState.TimOut)
             is UnknownHostException -> AppState.Error(ErrorState.UnknownHost)
             is ConnectionShutdownException -> AppState.Error(ErrorState.Connection)
@@ -37,6 +39,14 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
         cancelJob()
         viewModelCoroutineScope.launch {
             _mutableLiveData.value = AppState.Success(repository.getWeatherByCoordinate(lat, lon))
+        }
+    }
+
+    fun getWeatherByCity(city: String) {
+        _mutableLiveData.value = AppState.Loading
+        cancelJob()
+        viewModelCoroutineScope.launch {
+            _mutableLiveData.value = AppState.Success(repository.getWeatherByCity(city))
         }
     }
 

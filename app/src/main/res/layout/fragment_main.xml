@@ -1,231 +1,299 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_refresh_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_main"
     android:forceDarkAllowed="false"
     tools:context=".view.MainFragment">
 
-    <TextView
-        android:id="@+id/city_name"
-        style="@style/TextStyle.CityName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Омск" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/change_city"
-        style="@style/TextStyle.SmallText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_change_start"
-        android:layout_marginTop="@dimen/margin_change_top"
-        android:text="@string/change_city"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/city_name" />
+        <com.katyrin.testronasit.view.custom.SavingMotionLayout
+            android:id="@+id/motion_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutDescription="@xml/main_fragment_scene">
 
-    <ImageView
-        android:id="@+id/location_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_location_start"
-        android:contentDescription="@string/location_image"
-        app:layout_constraintBottom_toBottomOf="@id/change_city"
-        app:layout_constraintStart_toEndOf="@id/change_city"
-        app:layout_constraintTop_toTopOf="@id/change_city"
-        app:srcCompat="@drawable/ic_location" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="21dp"
+                android:layout_marginTop="27dp"
+                android:layout_marginEnd="22dp"
+                android:background="@drawable/background_input_layout"
+                android:elevation="8dp"
+                app:layout_constraintBottom_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/my_location"
-        style="@style/TextStyle.SmallText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_my_location_start"
-        android:text="@string/my_location"
-        app:layout_constraintBottom_toBottomOf="@id/location_image"
-        app:layout_constraintStart_toEndOf="@id/location_image"
-        app:layout_constraintTop_toTopOf="@id/location_image" />
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/city_edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginEnd="18dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/lato"
+                    android:inputType="textCapWords|textNoSuggestions"
+                    android:maxLines="1"
+                    android:imeOptions="actionDone"
+                    android:hint="@string/enter_city"
+                    android:textCursorDrawable="@null"
+                    android:textColorHint="@color/OK_blue"
+                    android:textColor="@color/OK_blue"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@id/input_layout"
+                    app:layout_constraintEnd_toStartOf="@id/ok_text_button"
+                    app:layout_constraintStart_toStartOf="@id/input_layout"
+                    app:layout_constraintTop_toTopOf="@id/input_layout" />
 
-    <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/temperature_group"
-        android:layout_width="@dimen/toggle_group_width"
-        android:layout_height="@dimen/toggle_group_height"
-        android:layout_marginTop="@dimen/margin_temperature_group_top"
-        android:layout_marginEnd="@dimen/margin_temperature_group_end"
-        android:background="@drawable/toggle_group_border"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:selectionRequired="true"
-        app:singleSelection="true">
+                <com.katyrin.testronasit.view.custom.ClickableTextView
+                    android:id="@+id/ok_text_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="17dp"
+                    android:fontFamily="@font/lato"
+                    android:text="@string/ok"
+                    android:textColor="@color/OK_blue"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@id/input_layout"
+                    app:layout_constraintEnd_toEndOf="@id/input_layout"
+                    app:layout_constraintStart_toEndOf="@id/city_edit_text"
+                    app:layout_constraintTop_toTopOf="@id/input_layout" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/metric_button"
-            style="@style/SwitchButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="0dp"
-            android:text="@string/c" />
+            <TextView
+                android:id="@+id/city_name"
+                style="@style/LatoFont.White.CityName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Омск" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/imperial_button"
-            style="@style/SwitchButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="0dp"
-            android:text="@string/f" />
+            <com.katyrin.testronasit.view.custom.ClickableTextView
+                android:id="@+id/change_city"
+                style="@style/LatoFont.WhiteSelectorSmallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_change_start"
+                android:layout_marginTop="@dimen/margin_change_top"
+                android:text="@string/change_city"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/city_name" />
 
-    </com.google.android.material.button.MaterialButtonToggleGroup>
+            <ImageView
+                android:id="@+id/location_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_location_start"
+                android:contentDescription="@string/location_image"
+                app:layout_constraintBottom_toBottomOf="@id/change_city"
+                app:layout_constraintStart_toEndOf="@id/change_city"
+                app:layout_constraintTop_toTopOf="@id/change_city"
+                app:srcCompat="@drawable/ic_location" />
 
-    <TextView
-        android:id="@+id/degree"
-        style="@style/TextStyle.DegreeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/degree"
-        app:layout_constraintEnd_toStartOf="@id/temperature_group"
-        app:layout_constraintTop_toTopOf="parent" />
+            <com.katyrin.testronasit.view.custom.ClickableTextView
+                android:id="@+id/my_location"
+                style="@style/LatoFont.WhiteSelectorSmallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_my_location_start"
+                android:text="@string/my_location"
+                app:layout_constraintBottom_toBottomOf="@id/location_image"
+                app:layout_constraintStart_toEndOf="@id/location_image"
+                app:layout_constraintTop_toTopOf="@id/location_image" />
 
-    <FrameLayout
-        android:id="@+id/weather_frame"
-        android:layout_width="269dp"
-        android:layout_height="220dp"
-        android:layout_marginStart="46dp"
-        android:layout_marginTop="167dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/temperature_group"
+                android:layout_width="@dimen/toggle_group_width"
+                android:layout_height="@dimen/toggle_group_height"
+                android:layout_marginTop="@dimen/margin_temperature_group_top"
+                android:layout_marginEnd="@dimen/margin_temperature_group_end"
+                android:background="@drawable/toggle_group_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:selectionRequired="true"
+                app:singleSelection="true">
 
-        <ImageView
-            android:id="@+id/weather_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="68dp"
-            tools:srcCompat="@drawable/ic_rain" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/metric_button"
+                    style="@style/SwitchButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="0dp"
+                    android:text="@string/c" />
 
-        <TextView
-            android:id="@+id/count_degree"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
-            android:fontFamily="@font/lato"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textFontWeight="300"
-            android:textSize="90sp"
-            tools:text="14º" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/imperial_button"
+                    style="@style/SwitchButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="0dp"
+                    android:text="@string/f" />
 
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:fontFamily="@font/pt_sans"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            tools:text="Rain" />
+            </com.google.android.material.button.MaterialButtonToggleGroup>
 
-    </FrameLayout>
+            <TextView
+                android:id="@+id/degree"
+                style="@style/LatoFont.White.DegreeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/degree"
+                app:layout_constraintEnd_toStartOf="@id/temperature_group"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/wind_text"
-        style="@style/TextStyle.SmallText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="120dp"
-        android:text="@string/wind"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/weather_frame" />
+            <FrameLayout
+                android:id="@+id/weather_frame"
+                android:layout_width="269dp"
+                android:layout_height="220dp"
+                android:layout_marginStart="46dp"
+                android:layout_marginTop="167dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/wind_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="2dp"
-        android:fontFamily="@font/lato"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/wind_text"
-        tools:text="5 м/c, западный" />
+                <ImageView
+                    android:id="@+id/weather_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="68dp"
+                    android:contentDescription="@string/current_weather_image"
+                    tools:srcCompat="@drawable/ic_rain" />
 
-    <TextView
-        android:id="@+id/pressure_text"
-        style="@style/TextStyle.SmallText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="120dp"
-        android:text="@string/pressure"
-        app:layout_constraintStart_toEndOf="@id/wind_description"
-        app:layout_constraintTop_toBottomOf="@id/weather_frame" />
+                <TextView
+                    android:id="@+id/count_degree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|end"
+                    android:fontFamily="@font/lato"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textFontWeight="300"
+                    android:textSize="90sp"
+                    tools:text="14º" />
 
-    <TextView
-        android:id="@+id/pressure_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="2dp"
-        android:fontFamily="@font/lato"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@id/wind_description"
-        app:layout_constraintTop_toBottomOf="@id/pressure_text"
-        tools:text="752 мм рт. ст." />
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:fontFamily="@font/pt_sans"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    tools:text="Rain" />
 
-    <TextView
-        android:id="@+id/humidity_text"
-        style="@style/TextStyle.SmallText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="35dp"
-        android:text="@string/humidity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/wind_description" />
+            </FrameLayout>
 
-    <TextView
-        android:id="@+id/humidity_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="2dp"
-        android:fontFamily="@font/lato"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/humidity_text"
-        tools:text="60%" />
+            <TextView
+                android:id="@+id/wind_text"
+                style="@style/LatoFont.White.SmallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="120dp"
+                android:text="@string/wind"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/weather_frame" />
 
-    <TextView
-        android:id="@+id/chance_of_rain_text"
-        style="@style/TextStyle.SmallText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="35dp"
-        android:text="@string/chance_of_rain"
-        app:layout_constraintStart_toEndOf="@id/wind_description"
-        app:layout_constraintTop_toBottomOf="@id/wind_description" />
+            <TextView
+                android:id="@+id/wind_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/lato"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/wind_text"
+                tools:text="5 м/c, западный" />
 
-    <TextView
-        android:id="@+id/chance_of_rain_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="2dp"
-        android:fontFamily="@font/lato"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/wind_description"
-        app:layout_constraintTop_toBottomOf="@id/chance_of_rain_text"
-        tools:text="10%" />
+            <TextView
+                android:id="@+id/pressure_text"
+                style="@style/LatoFont.White.SmallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:layout_marginTop="120dp"
+                android:text="@string/pressure"
+                app:layout_constraintStart_toEndOf="@id/wind_description"
+                app:layout_constraintTop_toBottomOf="@id/weather_frame" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/pressure_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/lato"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@id/wind_description"
+                app:layout_constraintTop_toBottomOf="@id/pressure_text"
+                tools:text="752 мм рт. ст." />
+
+            <TextView
+                android:id="@+id/humidity_text"
+                style="@style/LatoFont.White.SmallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="35dp"
+                android:text="@string/humidity"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/wind_description" />
+
+            <TextView
+                android:id="@+id/humidity_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/lato"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/humidity_text"
+                tools:text="60%" />
+
+            <TextView
+                android:id="@+id/chance_of_rain_text"
+                style="@style/LatoFont.White.SmallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:layout_marginTop="35dp"
+                android:text="@string/chance_of_rain"
+                app:layout_constraintStart_toEndOf="@id/wind_description"
+                app:layout_constraintTop_toBottomOf="@id/wind_description" />
+
+            <TextView
+                android:id="@+id/chance_of_rain_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/lato"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/wind_description"
+                app:layout_constraintTop_toBottomOf="@id/chance_of_rain_text"
+                tools:text="10%" />
+
+        </com.katyrin.testronasit.view.custom.SavingMotionLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

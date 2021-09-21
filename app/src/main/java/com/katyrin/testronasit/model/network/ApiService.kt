@@ -11,4 +11,9 @@ interface ApiService {
         @Query("lat") lat: Double,
         @Query("lon") lon: Double
     ): WeatherRequest
+
+    @GET("weather?exclude=current,minutely,hourly,alerts")
+    suspend fun getWeatherByCity(
+        @Query("q") city: String
+    ): WeatherRequest
 }

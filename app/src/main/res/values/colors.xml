@@ -10,4 +10,5 @@
 
     <color name="background_main">#7290B9</color>
     <color name="white_40">#66FFFFFF</color>
+    <color name="OK_blue">#1086FF</color>
 </resources>
